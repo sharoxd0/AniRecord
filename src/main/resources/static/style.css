@@ -1,0 +1,91 @@
+* {
+    box-sizing:border-box
+}
+
+.homeBody {
+    margin: 0;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+.homeText {
+    text-align: center;
+    font-style: italic;
+    color: red;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+.link {
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: larger;
+}
+
+.alignment {
+    float: right;
+}
+
+img {
+	vertical-align: middle;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #343a40;
+	color: white;
+	text-align: center;
+	font-style: italic;
+}
+
+.title {
+    text-align: center;
+    color: #343a40;
+    text-decoration: underline;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+.desc {
+    width: 250px;
+}
+
+.tableImg {
+    width: 150px;
+    height: 150px;
+    border: 6px solid #343a40;
+}
+
+.slideImg {
+    width: 100%;
+    height: 50%;
+    border: 10px solid #343a40;
+}
+
+th {
+    color: #343a40;
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: larger;
+}
+
+thead {
+    text-align: center;
+}
+
+tbody {
+    text-align: center;
+}
+
+button {
+    width: 100px;
+}

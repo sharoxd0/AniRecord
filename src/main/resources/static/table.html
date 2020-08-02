@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <!-- USING BOOTSTRAP 4 -->
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/gif" href="./images/sharingan.png">
+    <title>AniRecord | AnimeList</title>
+</head>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="index.html"><img src="./images/sharingan.png" style="width:35px;height:35px;"></a>
+  
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link" href="table.html">AnimeList</a>
+        </li>
+      </ul>
+    </div> 
+</nav>
+
+<body class="containter-fluid bg-light" onload="initialize()">
+    <div class="container">
+        <br>
+        <h1 class="title">Anime List</h1>
+        <div id ="modals"></div>
+        <br>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Anime Name</th>
+              <th>Description</th>
+              <th>Rating</th>
+              <th>Main Character</th>
+              <th>Release Date</th>
+              <th>Creator/Writer</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="anime"></tbody>
+        </table>
+        <br><br>
+      </div>
+</body>
+
+<footer>
+	<p class="homeText">Created By: Darreal Chambers</p>
+</footer>
+</html>
