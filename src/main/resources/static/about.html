@@ -37,58 +37,34 @@
           <a class="nav-link link" href="table.html">AnimeList</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link" href="about.html">About</a>
-      </li>
+            <a class="nav-link link" href="about.html">About</a>
+        </li>
       </ul>
     </div> 
 </nav>
 
 <body class="homeBody">
     <br>
-    <h1 class="title">Welcome to AniRecord</h1>
-    <p class="homeText">If someone questions your Anime Fandom, show them your AniRecord!!</p>
-    <div class="slideshow-container">
-
-        <!-- Full-width images with number and caption text -->
-        <div class="mySlides">
-            <img src="./images/naruto.jpg" alt="Anime Image" class="slideImg">
-        </div>
-
-        <div class="mySlides">
-          <img src="./images/ken.jpg" alt="Anime Image" class="slideImg">
-        </div>
-      
-        <div class="mySlides">
-          <img src="./images/goku.jpg" alt="Anime Image" class="slideImg">
-        </div>
-      
-        <div class="mySlides">
-          <img src="./images/bleach.jpg" alt="Anime Image" class="slideImg">
-        </div>
-
-        <div class="mySlides">
-            <img src="./images/one-piece.jpg" alt="Anime Image" class="slideImg">
-          </div>
+    <h1 class="title">More Information</h1>
+    <p class="homeText">To get more information about the project/creator please use the links provided below</p>
+    <br>
+    <div class="container">         
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Github</th>
+              <th>LinkedIn</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://github.com/Dmchambers491/AniRecord" target="_blank">GitHub</a></td>
+              <td><a href="https://www.linkedin.com/public-profile/in/darreal-chambers-ab716a152/" target="_blank">LinkedIn</a></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <br>
 </body>
-
-<script>
-    var slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}
-    slides[slideIndex-1].style.display = "block";
-    setTimeout(showSlides, 4000); 
-    }
-</script>
 
 <footer>
     <p class="footerText">Created By: Darreal Chambers</p>
