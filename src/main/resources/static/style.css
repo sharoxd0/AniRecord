@@ -4,6 +4,21 @@
 
 .homeBody {
     margin: 0;
+    background-image: url("./images/kaneki-ken.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.tableBody {
+    margin: 0;
+    background-color: black;
+}
+
+.aboutBody {
+    margin: 0;
+    background-image: url("./images/cowboy.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* Hide the images by default */
@@ -63,7 +78,7 @@ footer {
 
 .title {
     text-align: center;
-    color: black;
+    color: red;
     text-decoration: underline;
     font-family: Impact, Charcoal, sans-serif;
 }
@@ -105,8 +120,14 @@ button {
 
 td {
     width: 150px;
+    color: red;
 }
 
 .size {
     width: 100%;
+}
+
+.aboutLink {
+    color: red;
+    background-color: black;
 }
