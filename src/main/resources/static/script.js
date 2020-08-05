@@ -194,7 +194,7 @@ function updateAnime(id) {
     }
     console.log(sendData);
 
-    var ok = confirm("Are you sure you want to appl these changes?");
+    var ok = confirm("Are you sure you want to apply these changes?");
 
     if (ok == true) {
         var xhttp = new XMLHttpRequest();
