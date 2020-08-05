@@ -89,3 +89,7 @@ tbody {
 button {
     width: 100px;
 }
+
+td {
+    width: 150px;
+}

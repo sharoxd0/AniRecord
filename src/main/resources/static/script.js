@@ -1,8 +1,6 @@
 function initialize() {
     getAnime("/api/anime");
-    renderAddModal("createAnime");
-    renderUpdateModal("updateAnime");
-    //addAnime("/api/add/anime");
+    renderModal("createAnime", "modals");
 }
 
 function getAnime(url) {
@@ -17,6 +15,26 @@ function getAnime(url) {
     xhttpList.open("GET", url, true);
     xhttpList.send();
     console.log("Anime List Received!!");
+}
+
+function getOneAnime(id) {
+    var url = "/api/anime/" + id;
+    //make initial api call to get Student list
+    var xhttpList = new XMLHttpRequest();
+    var anime;
+
+    // Read JSON - and put in storage
+    xhttpList.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+            sessionStorage.setItem("anime", this.responseText);
+        }
+    };
+    xhttpList.open("GET", url, false);
+    xhttpList.send();
+    console.log("Single anime retrieved");
+
+    return sessionStorage.getItem("anime");
 }
 
 function renderAnime(data) {
@@ -34,107 +52,106 @@ function renderAnime(data) {
         + '<td><img src=' + json[i].creatorImage + ' alt="Add Image" class="tableImg"><br>' + json[i].creator + '</td>'
         + '<td><br>'
         + '<br>'
+        + '<div id="update' + json[i].id + '">'
         + '<button type="button" class="btn btn-danger" onclick="deleteAnime('+ json[i].id + ')">Delete</button>'
+        + '</div>'
         + '</td>'
         + '</tr>';
 
         document.getElementById("anime").insertAdjacentHTML("beforeend", tableHtml);
         
+        renderModal("updateAnime", json[i].id);
     }
 }
 
-function renderAddModal(modalPurpose) {
+function renderModal(modalPurpose, id) {
 
-    var modalHTML = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#'+ modalPurpose +'">Add</button>'
-    + ' <div class="modal fade" id="' + modalPurpose + '"> '
-    + ' <div class="modal-dialog modal-xl"> '
-    + ' <div class="modal-content"> '
+    var location;
+    var color;
+    var btntxt;
+    var anime;
+    var animeID = '';
+    var title;
 
-    + '<div class="modal-header">'
-    + '<h4 class="modal-title title">Add New Anime</h4>'
-    + '<button type="button" class="close" data-dismiss="modal">&times;</button>'
-    + '</div>'
+    switch (modalPurpose) {
+        case "createAnime":
+            location = id;
+            color = "btn-primary";
+            btntxt = "Add";
+            title = "Add Anime";
+            break;
+        case "updateAnime":
+            anime = getOneAnime(id);
+            animeID = JSON.parse(anime).id;
+            location = "update" + id;
+            color = "btn-warning";
+            btntxt = "Edit";
+            title = "Update Anime";
+            break;
+    }
 
-    + '<div class="modal-body">'
-    + '<form action="table.html" onsubmit="addAnime()">'
-    + '<div class="form-group">'
-    + '<label for="name">Anime Name:</label>'
-    + '<input type="text" class="form-control" placeholder="Enter name of anime" id="name" required>'
-    + '</div>'
-    + '<div class="form-group">'
-    + '<label for="show">Show Image:</label>'
-    + '<input type="url" class="form-control" placeholder="Enter a image url" id="show">'
-    + '</div>'
-    + '<div class="form-group">'
-    + '<label for="description">Description:</label>'
-    + '<input type="text" class="form-control" placeholder="Enter description for anime" id="description">'
-    + '</div>'
-    + '<div class="form-group">'
-    + '<label for="rating">Rating:</label>'
-    + '<input type="number" class="form-control" placeholder="Enter a rating on a scale of 1-10" id="rating" min="1" max="10">'
-    + '</div>'
-    + '<div class="form-group">'
-    + '<label for="main">Main Character:</label>'
-    + '<input type="text" class="form-control" placeholder="Enter name of main character" id="main">'
-    + '</div>'
-    + '<div class="form-group">'
-    + '<label for="mainImage">Main Character Image:</label>'
-    + '<input type="url" class="form-control" placeholder="Enter a image url" id="mainImage">'
-    + '</div>'
-    + '<div class="form-group">'
-    + '<label for="date">Release Date:</label>'
-    + '<input type="date" class="form-control" id="date">'
-    + '</div>'
-    + '<div class="form-group">'
-    + '<label for="creator">Creator/Writer:</label>'
-    + '<input type="text" class="form-control" placeholder="Enter name of creator/writer" id="creator">'
-    + '</div>'
-    + '<div class="form-group">'
-    + '<label for="creatorImage">Creator/Writer Image:</label>'
-    + '<input type="url" class="form-control" placeholder="Enter a image url" id="creatorImage">'
-    + '</div>'
-    + '<button type="submit" class="btn btn-success">Submit</button>'
-    + '</form>'
-    + '</div>'
+    var buttonHtml = '<button type="button" class="btn ' + color + '" data-toggle="modal" data-target="#' + modalPurpose + animeID + '">' + btntxt + '</button>';
+    document.getElementById(location).insertAdjacentHTML('beforeend', buttonHtml);
 
-    + '<div class="modal-footer">'
-    + '<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'
-    + '</div>'
+    var modalHtml = ' <div class="modal fade" id="' + modalPurpose + animeID + '"> '
+        + ' <div class="modal-dialog modal-xl"> '
+        + ' <div class="modal-content"> '
 
-    + '</div>'
-    + '</div>'
-    + '</div>'
-    + '</div>';
+        + '<div class="modal-header">'
+        + '<h4 class="modal-title title">' + title + '</h4>'
+        + '<button type="button" class="close" data-dismiss="modal">&times;</button>'
+        + '</div>'
 
-    document.getElementById("modals").insertAdjacentHTML("beforeend", modalHTML);
+        + '<div class="modal-body">'
+        + animeForm(anime, modalPurpose)
+        + '</div>'
+
+        + '<div class="modal-footer">'
+        + '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>'
+        + '</div>'
+
+        + '</div>'
+        + '</div>'
+        + '</div>'
+        + '</div>';
+
+    document.getElementById("modals").insertAdjacentHTML('beforeend', modalHtml);
 
 }
 
-function renderUpdateModal(modalPurpose) {
+function createAnime() {
 
-    var modalHTML = '<button type="button" class="btn btn-warning alignment" data-toggle="modal" data-target="#'+ modalPurpose +'">Update</button>'
-    + ' <div class="modal fade" id="' + modalPurpose + '"> '
-    + ' <div class="modal-dialog modal-xl"> '
-    + ' <div class="modal-content"> '
+    var sendData = {
+        "name": document.getElementById("createAnimename").value,
+        "releaseDate": document.getElementById("createAnimereleaseDate").value,
+        "showImage": document.getElementById("createAnimeshowImage").value,
+        "description": document.getElementById("createAnimedescription").value,
+        "rating": document.getElementById("createAnimerating").value,
+        "creator": document.getElementById("createAnimecreator").value,
+        "creatorImage": document.getElementById("createAnimecreatorImage").value,
+        "protagonist": document.getElementById("createAnimeprotagonist").value,
+        "protagImage": document.getElementById("createAnimeprotagImage").value
+    }
+    console.log(sendData);
 
-    + '<div class="modal-header">'
-    + '<h4 class="modal-title title">Update Anime</h4>'
-    + '<button type="button" class="close" data-dismiss="modal">&times;</button>'
-    + '</div>'
+    // Confirmation about creating
+    var ok = confirm("Are you sure you want to add this Anime?");
 
-    + '<div class="modal-body">'
-    + '</div>'
-
-    + '<div class="modal-footer">'
-    + '<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'
-    + '</div>'
-
-    + '</div>'
-    + '</div>'
-    + '</div>'
-    + '</div>';
-
-    document.getElementById("modals").insertAdjacentHTML("beforeend", modalHTML);
+    if (ok == true) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/api/add/anime", true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("Update success");
+                var display = document.getElementById("anime");
+                display.innerHTML = '';
+                getAnime("/api/anime");
+                console.log("Anime created!");
+            }
+        };
+        xhttp.send(JSON.stringify(sendData));
+    }
 
 }
 
@@ -161,27 +178,127 @@ function deleteAnime(id) {
 
 }
 
-// function addAnime(url) {
+function updateAnime(id) {
 
-//     var xhttp = new XMLHttpRequest();
+    var sendData = {
+        "id": id,
+        "name": document.getElementById("updateAnimename"+id).value,
+        "releaseDate": document.getElementById("updateAnimereleaseDate"+id).value,
+        "showImage": document.getElementById("updateAnimeshowImage"+id).value,
+        "description": document.getElementById("updateAnimedescription"+id).value,
+        "rating": document.getElementById("updateAnimerating"+id).value,
+        "creator": document.getElementById("updateAnimecreator"+id).value,
+        "creatorImage": document.getElementById("updateAnimecreatorImage"+id).value,
+        "protagonist": document.getElementById("updateAnimeprotagonist"+id).value,
+        "protagImage": document.getElementById("updateAnimeprotagImage"+id).value
+    }
+    console.log(sendData);
 
-//     xhttp.onreadystatechange = function() {
-//         if(this.readyState == 4 && this.status == 200){
-//             var data = {
-//                 name: document.getElementById("name").value,
-//                 releaseDate: document.getElementById("date").value,
-//                 showImage: document.getElementById("show").value,
-//                 description: document.getElementById("description").value,
-//                 rating: document.getElementById("rating").value,
-//                 creator: document.getElementById("creator").value,
-//                 creatorImage: document.getElementById("creatorImage").value,
-//                 protagonist: document.getElementById("main").value,
-//                 protagImage: document.getElementById("mainImage").value
-//             }
+    var ok = confirm("Are you sure you want to appl these changes?");
 
-//             renderAnime(data);
-//         }
-//     };
-//     xhttp.open("POST", url, true);
-//     xhttp.send();
-// }
+    if (ok == true) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("PUT", "/api/update/anime", true);
+        xhttp.setRequestHeader('content-Type', 'application/json');
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("Update success");
+                var display = document.getElementById("anime");
+                display.innerHTML = '';
+                getAnime("/api/anime");
+            }
+        };
+        
+        xhttp.send(JSON.stringify(sendData));
+    }
+}
+
+function animeForm(anime, purpose) {
+    
+    var input;
+    var id;
+    var name;
+    var releaseDate;
+    var showImage;
+    var description;
+    var rating;
+    var creator;
+    var creatorImage;
+    var protagonist;
+    var protagImage;
+    var action;
+
+    switch (purpose) {
+        case "createAnime":
+            input = '';
+            id ='';
+            name = '';
+            releaseDate = '';
+            showImage = '';
+            description = '';
+            rating = '';
+            creator = '';
+            creatorImage = '';
+            protagonist = '';
+            protagImage = '';
+            action = 'createAnime()';
+            break;
+        case "updateAnime":
+            input = JSON.parse(anime);
+            id = input.id;
+            name = input.name;
+            releaseDate = input.releaseDate;
+            showImage = input.showImage;
+            description = input.description;
+            rating = input.rating;
+            creator = input.creator;
+            creatorImage = input.creatorImage;
+            protagonist = input.protagonist;
+            protagImage = input.protagImage;
+            action = 'updateAnime(' + input.id + ')';
+            break;
+    }
+
+    var form = ''
+        + '<form>'
+        + '<div class="form-group">'
+        + '<label for="name">Anime Name:</label>'
+        + '<input type="text" class="form-control" placeholder="Enter name of anime" id="' + purpose + 'name' + id +'" value="' + name + '">'
+        + '</div>'
+        + '<div class="form-group">'
+        + '<label for="show">Show Image:</label>'
+        + '<input type="url" class="form-control" placeholder="Enter image url" id="' + purpose + 'showImage' + id +'" value="' + showImage + '">'
+        + '</div>'
+        + '<div class="form-group">'
+        + '<label for="description">Description:</label>'
+        + '<input type="text" class="form-control" placeholder="Enter description for anime" id="' + purpose + 'description' + id +'" value="' + description + '">'
+        + '</div>'
+        + '<div class="form-group">'
+        + '<label for="rating">Rating:</label>'
+        + '<input type="number" class="form-control" placeholder="Enter a rating on a scale of 1-10" id="' + purpose + 'rating' + id +'" value="' + rating + '" min="1" max="10">'
+        + '</div>'
+        + '<div class="form-group">'
+        + '<label for="main">Main Character:</label>'
+        + '<input type="text" class="form-control" placeholder="Enter name of main character" id="' + purpose + 'protagonist' + id +'" value="' + protagonist + '">'
+        + '</div>'
+        + '<div class="form-group">'
+        + '<label for="mainImage">Main Character Image:</label>'
+        + '<input type="url" class="form-control" placeholder="Enter image url" id="' + purpose + 'protagImage' + id +'" value="' + protagImage + '">'
+        + '</div>'
+        + '<div class="form-group">'
+        + '<label for="date">Release Date:</label>'
+        + '<input type="date" class="form-control" id="' + purpose + 'releaseDate' + id +'" value="' + releaseDate + '">'
+        + '</div>'
+        + '<div class="form-group">'
+        + '<label for="creator">Creator/Writer:</label>'
+        + '<input type="text" class="form-control" placeholder="Enter name of creator/writer" id="' + purpose + 'creator' + id +'" value="' + creator + '">'
+        + '</div>'
+        + '<div class="form-group">'
+        + '<label for="creatorImage">Creator/Writer Image:</label>'
+        + '<input type="url" class="form-control" placeholder="Enter image url" id="' + purpose + 'creatorImage' + id +'" value="' + creatorImage + '">'
+        + '</div>'
+        + '<button type="submit" class="btn btn-success" data-dismiss="modal" onclick="' + action + '">Submit</button>'
+        + '</form>'
+        
+    return form;
+}
