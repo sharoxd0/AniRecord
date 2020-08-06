@@ -41,10 +41,12 @@ nav .navbar-nav li a{
     font-family: Impact, Charcoal, sans-serif;
 }
 
-.footerText {
+.footerText2 {
     font-style: italic;
-    color: red;
+    color: black;
+    float: right;
     font-family: Impact, Charcoal, sans-serif;
+    margin-right: 5px;
 }
 
 .link {
