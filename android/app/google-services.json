@@ -1,0 +1,126 @@
+{
+  "project_info": {
+    "project_number": "283747170634",
+    "project_id": "anirecord-955d7",
+    "storage_bucket": "anirecord-955d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283747170634:android:753308465ab6c43da2a9b3",
+        "android_client_info": {
+          "package_name": "com.star.anirecord"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283747170634-gjaj4191ah73arr38raldojg15poqnl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaHpytF8x-NPuSfTA56AMk9W8t3i1Xfgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283747170634-gjaj4191ah73arr38raldojg15poqnl8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "283747170634-74ss4pon5lorsjl6bo0f4jjtku8bjign.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sun.anirecord"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283747170634:android:21562a1225d296a9a2a9b3",
+        "android_client_info": {
+          "package_name": "com.sun.ani_record_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283747170634-gjaj4191ah73arr38raldojg15poqnl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaHpytF8x-NPuSfTA56AMk9W8t3i1Xfgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283747170634-gjaj4191ah73arr38raldojg15poqnl8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "283747170634-74ss4pon5lorsjl6bo0f4jjtku8bjign.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sun.anirecord"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283747170634:android:9f8ac3110eb09ab0a2a9b3",
+        "android_client_info": {
+          "package_name": "com.sun.anirecord"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283747170634-avuh5f7ri09jqvt113io3e2rp2pv9t5e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sun.anirecord",
+            "certificate_hash": "d6a42c0cd6f1edc4a048bbdaa5c98069924e82ea"
+          }
+        },
+        {
+          "client_id": "283747170634-gjaj4191ah73arr38raldojg15poqnl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaHpytF8x-NPuSfTA56AMk9W8t3i1Xfgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283747170634-gjaj4191ah73arr38raldojg15poqnl8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "283747170634-74ss4pon5lorsjl6bo0f4jjtku8bjign.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sun.anirecord"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
